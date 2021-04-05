@@ -19,3 +19,27 @@ let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Toronto&appid=${
 
 console.log (apiUrl);
 axios.get(apiUrl).then(displayTemperature);
+
+//DATE
+let currentDate = new Date();
+let h2 = document.querySelector("#date");
+let hours = currentDate.getHours();
+if (hours < 10) {
+  hours = `0${hours}`;
+}
+let minutes = currentDate.getMinutes();
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
+let day = days[currentDate.getDay()];
+
+h2.innerHTML = `${day}, ${hours}:${minutes}`;
