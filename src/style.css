@@ -55,3 +55,12 @@ li::first-letter {
   top: -20px;
   border: 0px;
 }
+
+.weather-temperature .active {
+  color: #050e70;
+  cursor: default;
+}
+
+.weather-temperature .active:hover {
+  text-decoration: none;
+}
