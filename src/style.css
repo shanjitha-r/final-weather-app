@@ -7,7 +7,7 @@ h1 {
   font-size: 40px;
   font-weight: 100;
   color: #050e70;
-  line-height: 50px;
+  line-height: 1px;
 }
 h2 {
   font-size: 20px;
@@ -41,11 +41,17 @@ li::first-letter {
 .weather-temperature strong {
   font-size: 45px;
   color: #050e70;
-  line-height: 1px;
+  line-height: 15px;
   margin: 2px 0 0 250;
 }
 .weather-temperature .units {
   font-size: 16px;
   top: -20px;
   position: relative;
+}
+
+.weather-temperature img {
+  margin: 0px 0px 0px 230px;
+  top: -20px;
+  border: 0px;
 }

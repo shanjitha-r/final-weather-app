@@ -16,12 +16,6 @@ function displayTemperature(response){
     iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
     iconElement.setAttribute("alt", response.data.weather[0].description);
 }
-let apiKey = "42b57b52a827badd57ef4bf4ca7a62ce";
-let city= "Toronto";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
-console.log (apiUrl);
-axios.get(apiUrl).then(displayTemperature);
 
 //DATE
 let currentDate = new Date();
@@ -46,3 +40,20 @@ let days = [
 let day = days[currentDate.getDay()];
 
 h2.innerHTML = `${day},${hours}:${minutes}`;
+
+function search (city){
+    let apiKey = "42b57b52a827badd57ef4bf4ca7a62ce";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayTemperature);
+}
+
+function submitSearch (event){
+    event.preventDefault();
+    let cityInputElement = document.querySelector ("#city-input");
+    search (cityInputElement.value);
+    
+}
+
+search ("Toronto");  
+let form = document.querySelector ("#search-form");
+form.addEventListener("submit", submitSearch);
