@@ -42,6 +42,14 @@ let days = [
 let day = days[currentDate.getDay()];
 
 h2.innerHTML = `${day},${hours}:${minutes}`;
+  let now = new Date();
+
+    new Intl.DateTimeFormat('default',
+        {
+            hour12: true,
+            hour: 'numeric',
+            minute: 'numeric'
+        }).format(now);
 
 function search (city){
     let apiKey = "42b57b52a827badd57ef4bf4ca7a62ce";
