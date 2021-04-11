@@ -1,24 +1,3 @@
-
-function displayTemperature(response){
-
-    let cityElement = document.querySelector("#city");
-    let temperatureElement = document.querySelector("#temperature");
-    let descriptionElement = document.querySelector("#description");
-    let humidityElement = document.querySelector("#humidity");
-    let windElement = document.querySelector("#wind");
-    let iconElement = document.querySelector("#icon");
-    
-    celsiusTemperature = response.data.main.temp;
-
-    cityElement.innerHTML= response.data.name;
-    temperatureElement.innerHTML= Math.round(response.data.main.temp);
-    descriptionElement.innerHTML= response.data.weather[0].description;
-    humidityElement.innerHTML= response.data.main.humidity;
-    windElement.innerHTML= Math.round(response.data.wind.speed);
-    iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-    iconElement.setAttribute("alt", response.data.weather[0].description);
-}
-
 //DATE
 let currentDate = new Date();
 let h2 = document.querySelector("#date");
@@ -42,14 +21,55 @@ let days = [
 let day = days[currentDate.getDay()];
 
 h2.innerHTML = `${day},${hours}:${minutes}`;
-  let now = new Date();
 
-    new Intl.DateTimeFormat('default',
-        {
-            hour12: true,
-            hour: 'numeric',
-            minute: 'numeric'
-        }).format(now);
+function displayForcast (){
+    let forecastElement = document.querySelector("#forecast");
+    let forecastHTML = `<div class = row>`;
+    let days = ["Sun" , "Mon", "Tue", "Wed", "Thu"];
+    days.forEach(function(day){
+forecastHTML = forecastHTML + `
+   
+            <div class = "col-2">
+                <div class = "weather-forecast-date"> ${day} </div>
+                <img src ="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" 
+                alt=""
+                width="42"/>
+            <div class="weather-forcast-temperature">
+                <span class ="weather-forcast-temperature-max"> 16°C</span> 
+                <span class ="weather-forcast-temperature-min">9°C</span>
+            </div>
+            </div>`;
+    })
+    forecastHTML = forecastHTML + `</div>`;      
+    forecastElement.innerHTML = forecastHTML; 
+    
+}
+
+
+function displayTemperature(response){
+
+    let cityElement = document.querySelector("#city");
+    let temperatureElement = document.querySelector("#temperature");
+    let descriptionElement = document.querySelector("#description");
+    let humidityElement = document.querySelector("#humidity");
+    let windElement = document.querySelector("#wind");
+    let iconElement = document.querySelector("#icon");
+    
+  
+
+    celsiusTemperature = response.data.main.temp;
+
+    cityElement.innerHTML= response.data.name;
+    temperatureElement.innerHTML= Math.round(response.data.main.temp);
+    descriptionElement.innerHTML= response.data.weather[0].description;
+    humidityElement.innerHTML= response.data.main.humidity;
+    windElement.innerHTML= Math.round(response.data.wind.speed);
+    iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+    iconElement.setAttribute("alt", response.data.weather[0].description);
+}
+
+
+
 
 function search (city){
     let apiKey = "42b57b52a827badd57ef4bf4ca7a62ce";
@@ -90,3 +110,4 @@ let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 search ("Toronto");  
+displayForcast();
