@@ -5,6 +5,7 @@ let hours = currentDate.getHours();
 if (hours < 10) {
   hours = `0${hours}`;
 }
+
 let minutes = currentDate.getMinutes();
 if (minutes < 10) {
   minutes = `0${minutes}`;
@@ -20,7 +21,7 @@ let days = [
 ];
 let day = days[currentDate.getDay()];
 
-h2.innerHTML = `${day},${hours}:${minutes}`;
+h2.innerHTML = `${day}, ${hours}:${minutes}`;
 
 function formatDay (timestamp){
 let date = new Date(timestamp * 1000);
@@ -43,7 +44,7 @@ forecastHTML = forecastHTML + `
                 <img src = "http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
                 
                 alt=""
-                width="42"/>
+                width="50"/>
             <div class="weather-forcast-temperature">
                 <span class ="weather-forcast-temperature-max"> ${Math.round (forecastDay.temp.max)}° | </span> 
                 <span class ="weather-forcast-temperature-min">${Math.round(forecastDay.temp.min)}°</span>
